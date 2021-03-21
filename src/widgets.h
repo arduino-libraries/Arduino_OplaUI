@@ -9,12 +9,18 @@ class Widget {
   virtual void begin(MKRIoTCarrier &carrier) {
     _carrier = &carrier;
   };
-  virtual void show();
+  virtual void show() {
+    this->draw(true);
+  };
   virtual void draw(bool clear = true) = 0;
   virtual void onButtonDown(short i) {};
+  void setReadOnly(bool v) {
+    _readonly = v;
+  };
 
   protected:
   MKRIoTCarrier* _carrier = nullptr;
+  bool _readonly = false;
 };
 
 class GaugeWidget : public Widget {
@@ -43,9 +49,6 @@ class GaugeWidget : public Widget {
   void setDigits(int v) {
     _gauge->digits = v;
   };
-  void setReadOnly(bool v) {
-    _readonly = v;
-  };
   void begin(MKRIoTCarrier &carrier);
   void show();
   void draw(bool clear = true);
@@ -55,7 +58,6 @@ class GaugeWidget : public Widget {
   OplaGauge* _gauge = nullptr;
   float* float_value = nullptr;
   int* int_value = nullptr;
-  bool _readonly = false;
   float getFloatValue() {
     if (float_value != nullptr) {
       return *float_value;
@@ -112,9 +114,6 @@ class Bool_Widget : public Widget {
   void setTitle(char* v) {
     _title = v;
   };
-  void setReadOnly(bool v) {
-    _readonly = v;
-  };
   void show() {
     this->draw(true);
   }
@@ -125,7 +124,6 @@ class Bool_Widget : public Widget {
   bool* _value = nullptr;
   bool _last_value;
   String _title;
-  bool _readonly = false;
 };
 
 class WidgetsApp {

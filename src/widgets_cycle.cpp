@@ -36,6 +36,13 @@ void CycleWidgetsApp::showWidget(short i) {
     if (i == -1) {
       _carrier->display.fillScreen(ST77XX_BLACK);
     } else {
+      // Reset LEDs 1-4
+      _carrier->leds.setPixelColor(1, 0, 0, 0);
+      _carrier->leds.setPixelColor(2, 0, 0, 0);
+      _carrier->leds.setPixelColor(3, 0, 0, 0);
+      _carrier->leds.setPixelColor(4, 0, 0, 0);
+      _carrier->leds.show();
+      
       _widgets[i]->show();
       _last_draw = millis();
     }

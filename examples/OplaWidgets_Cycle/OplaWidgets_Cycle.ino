@@ -12,9 +12,6 @@ float humidity, temperature, pressure;
 String message;
 
 void setup() {
-  Serial.begin(9600);
-  while (!Serial) {}
-
   w0.setTitle("HUMIDITY");
   w0.setSuffix("%");
   w0.setValue(humidity);

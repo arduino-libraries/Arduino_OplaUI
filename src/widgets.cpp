@@ -5,16 +5,6 @@
 
 constexpr unsigned long REDRAW_INTERVAL = 100;
 
-void Widget::show() {
-    this->draw(true);
-
-    _carrier->leds.setPixelColor(1, 0, 0, 0);
-    _carrier->leds.setPixelColor(2, 0, 0, 0);
-    _carrier->leds.setPixelColor(3, 0, 0, 0);
-    _carrier->leds.setPixelColor(4, 0, 0, 0);
-    _carrier->leds.show();
-}
-
 void GaugeWidget::begin(MKRIoTCarrier &carrier) {
     Widget::begin(carrier);
     _gauge->begin(carrier.display);
@@ -23,12 +13,7 @@ void GaugeWidget::begin(MKRIoTCarrier &carrier) {
 void GaugeWidget::show() {
     this->draw(true);
     
-    _carrier->leds.setPixelColor(1, 0, 0, 0);
-    _carrier->leds.setPixelColor(2, 0, 0, 0);
-    if (_readonly) {
-        _carrier->leds.setPixelColor(3, 0, 0, 0);
-        _carrier->leds.setPixelColor(4, 0, 0, 0);
-    } else {
+    if (!_readonly) {
         _carrier->leds.setPixelColor(3, 20, 0, 0);
         _carrier->leds.setPixelColor(4, 0, 20, 0);
     }
@@ -100,15 +85,12 @@ void Bool_Widget::draw(bool clear) {
         _last_value = *_value;
         
         // Update LEDs
-        _carrier->leds.setPixelColor(1, 0, 0, 0);
-        _carrier->leds.setPixelColor(2, 0, 0, 0);
-        _carrier->leds.setPixelColor(4, 0, 0, 0);
-        if (_readonly) {
-            _carrier->leds.setPixelColor(3, 0, 0, 0);
-        } else if (*_value) {
-            _carrier->leds.setPixelColor(3, 20, 0, 0);
-        } else {
-            _carrier->leds.setPixelColor(3, 0, 20, 0);
+        if (!_readonly) {
+            if (*_value) {
+                _carrier->leds.setPixelColor(3, 20, 0, 0);
+            } else {
+                _carrier->leds.setPixelColor(3, 0, 20, 0);
+            }
         }
         _carrier->leds.show();
     }

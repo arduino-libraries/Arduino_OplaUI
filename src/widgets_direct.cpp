@@ -6,7 +6,8 @@ void DirectWidgetsApp::onButtonDown(short i) {
 
 void DirectWidgetsApp::setWidget(size_t i, Widget &w) {
     _widgets[i] = &w;
-    _widgets[i]->begin(*_carrier);
+    w.setReadOnly(true);
+    w.begin(*_carrier);
 }
 
 void DirectWidgetsApp::showWidget(short i) {
