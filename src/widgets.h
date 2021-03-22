@@ -25,10 +25,10 @@ class Widget {
 
 class GaugeWidget : public Widget {
   public:
-  void setValue(float &val) {
+  void attachValue(float &val) {
     float_value = &val;
   };
-  void setValue(int &val) {
+  void attachValue(int &val) {
     int_value = &val;
   };
   void setTitle(char* v) {
@@ -92,7 +92,7 @@ class Gauge2_Widget : public GaugeWidget {
 
 class String_Widget : public Widget {
   public:
-  void setValue(const String &val) {
+  void attachValue(const String &val) {
     _value = &val;
   };
   void setTitle(char* v) {
@@ -108,7 +108,7 @@ class String_Widget : public Widget {
 
 class Bool_Widget : public Widget {
   public:
-  void setValue(bool &val) {
+  void attachValue(bool &val) {
     _value = &val;
   };
   void setTitle(char* v) {

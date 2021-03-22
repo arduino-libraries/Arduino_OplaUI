@@ -17,17 +17,17 @@ void setup() {
 
   w0.setTitle("SPEED");
   w0.setSuffix(" km/h");
-  w0.setValue(speed);
+  w0.attachValue(speed);
 
   w1.setTitle("TEMPERATURE");
   w1.setSuffix(" C");
-  w1.setValue(temperature);
+  w1.attachValue(temperature);
 
   w2.setTitle("MESSAGE");
-  w2.setValue(message);
+  w2.attachValue(message);
 
   w3.setTitle("LIGHT");
-  w3.setValue(light);
+  w3.attachValue(light);
 
   app.begin(carrier);
   app.addWidget(w0);

@@ -14,7 +14,7 @@ String message;
 void setup() {
   w0.setTitle("HUMIDITY");
   w0.setSuffix("%");
-  w0.setValue(humidity);
+  w0.attachValue(humidity);
   w0.setReadOnly(true);
 
   w1.setTitle("TEMPERATURE");
@@ -22,7 +22,7 @@ void setup() {
   w1.setMin(0);
   w1.setMax(50);
   w1.setSteps(10);
-  w1.setValue(temperature);
+  w1.attachValue(temperature);
   w1.setReadOnly(true);
 
   w2.setTitle("PRESSURE");
@@ -31,11 +31,11 @@ void setup() {
   w2.setMin(700);
   w2.setMax(1200);
   w2.setSteps(10);
-  w2.setValue(pressure);
+  w2.attachValue(pressure);
   w2.setReadOnly(true);
   
   w3.setTitle("MESSAGE");
-  w3.setValue(message);
+  w3.attachValue(message);
 
   app.begin(carrier);
   app.addWidget(w0);

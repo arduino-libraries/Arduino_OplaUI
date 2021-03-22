@@ -12,14 +12,14 @@ float humidity, temperature, pressure;
 void setup() {
   w0.setTitle("HUMIDITY");
   w0.setSuffix("%");
-  w0.setValue(humidity);
+  w0.attachValue(humidity);
 
   w1.setTitle("TEMPERATURE");
   w1.setSuffix(" C");
   w1.setMin(0);
   w1.setMax(50);
   w1.setSteps(10);
-  w1.setValue(temperature);
+  w1.attachValue(temperature);
 
   w2.setTitle("PRESSURE");
   w2.setSuffix(" hPa");
@@ -27,7 +27,7 @@ void setup() {
   w2.setMin(700);
   w2.setMax(1200);
   w2.setSteps(8);
-  w2.setValue(pressure);
+  w2.attachValue(pressure);
 
   app.begin(carrier);
   app.setWidget(0, w0);
