@@ -12,6 +12,7 @@ class Widget {
   virtual void show() {
     this->draw(true);
   };
+  virtual void hide() {};
   virtual void draw(bool clear = true) = 0;
   virtual void onButtonDown(short i) {};
   void setReadOnly(bool v) {

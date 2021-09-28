@@ -16,8 +16,16 @@ void GaugeWidget::show() {
     if (!_readonly) {
         _carrier->leds.setPixelColor(3, 20, 0, 0);
         _carrier->leds.setPixelColor(4, 0, 20, 0);
+        _carrier->leds.show();
     }
-    _carrier->leds.show();
+}
+
+void GaugeWidget::hide() {
+    if (!_readonly) {
+        _carrier->leds.setPixelColor(3, 0, 0, 0);
+        _carrier->leds.setPixelColor(4, 0, 0, 0);
+        _carrier->leds.show();
+    }
 }
 
 void GaugeWidget::draw(bool clear) {
@@ -87,7 +95,14 @@ void Bool_Widget::draw(bool clear) {
             } else {
                 _carrier->leds.setPixelColor(3, 0, 20, 0);
             }
+            _carrier->leds.show();
         }
+    }
+}
+
+void Bool_Widget::hide() {
+    if (!_readonly) {
+        _carrier->leds.setPixelColor(3, 0, 0, 0);
         _carrier->leds.show();
     }
 }

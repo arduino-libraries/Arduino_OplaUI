@@ -25,14 +25,12 @@ void CycleWidgetsApp::onButtonDown(short i) {
 void CycleWidgetsApp::showWidget(short i) {
     if (i > -1 && _widgets[i] == nullptr) return;
     if (i == _current_widget) return;
+
+    if (Widget* w = this->getCurrentWidget()) {
+      w->hide();
+    }
+
     _current_widget = i;
-    
-    // Reset LEDs 1-4
-    _carrier->leds.setPixelColor(1, 0, 0, 0);
-    _carrier->leds.setPixelColor(2, 0, 0, 0);
-    _carrier->leds.setPixelColor(3, 0, 0, 0);
-    _carrier->leds.setPixelColor(4, 0, 0, 0);
-    _carrier->leds.show();
 
     // Provide acustic feedback
     if (i > -1) {
