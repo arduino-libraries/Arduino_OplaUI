@@ -1,7 +1,7 @@
 #include "widgets.h"
-#include "rre_arialb_16.h"
-#include "rre_tahoma_65v.h"
-#include "rre_6x8.h"
+#include "utils.h"
+#include <Fonts/FreeSans9pt7b.h>
+#include <Fonts/FreeSans12pt7b.h>
 
 constexpr unsigned long REDRAW_INTERVAL = 100;
 
@@ -42,21 +42,19 @@ void String_Widget::draw(bool clear) {
     if (clear || *_value != _last_value) {
         _carrier->display.fillScreen(ST77XX_BLACK);
     
-        RREFont font;
         lcd = &_carrier->display;
-        font.init([](int x, int y, int w, int h, int c) {
-            lcd->fillRect(x, y, w, h, c);
-        }, _carrier->display.width(), _carrier->display.height());
 
         // Print title
-        font.setFont(&rre_6x8);
-        font.setColor(ST77XX_WHITE, ST77XX_BLACK);
-        font.printStr(ALIGN_CENTER, _carrier->display.height()/2-30, const_cast<char*>(_title.c_str()));
+        lcd->setFont(&FreeSans9pt7b);
+        lcd->setTextSize(1);
+        lcd->setTextColor(ST77XX_WHITE);
+        drawStringCenter(*lcd, const_cast<char*>(_title.c_str()), lcd->width()/2, _carrier->display.height()/2-30);
         
         // Print value
-        font.setFont(&rre_arialb_16);
-        font.setColor(ST77XX_WHITE, ST77XX_BLACK);
-        font.printStr(ALIGN_CENTER, _carrier->display.height()/2, const_cast<char*>(_value->c_str()));
+        lcd->setFont(&FreeSans12pt7b);
+        lcd->setTextSize(1);
+        lcd->setTextColor(ST77XX_WHITE);
+        drawStringCenter(*lcd, const_cast<char*>(_value->c_str()), lcd->width()/2, _carrier->display.height()/2);
         
         _last_value = *_value;
     }
@@ -66,21 +64,19 @@ void Bool_Widget::draw(bool clear) {
     if (clear || *_value != _last_value) {
         _carrier->display.fillScreen(ST77XX_BLACK);
     
-        RREFont font;
         lcd = &_carrier->display;
-        font.init([](int x, int y, int w, int h, int c) {
-            lcd->fillRect(x, y, w, h, c);
-        }, _carrier->display.width(), _carrier->display.height());
 
         // Print title
-        font.setFont(&rre_6x8);
-        font.setColor(ST77XX_WHITE, ST77XX_BLACK);
-        font.printStr(ALIGN_CENTER, _carrier->display.height()/2-30, const_cast<char*>(_title.c_str()));
+        lcd->setFont(&FreeSans9pt7b);
+        lcd->setTextSize(1);
+        lcd->setTextColor(ST77XX_WHITE);
+        drawStringCenter(*lcd, const_cast<char*>(_title.c_str()), lcd->width()/2, _carrier->display.height()/2-30);
         
         // Print value
-        font.setFont(&rre_tahoma_65v);
-        font.setColor(ST77XX_WHITE, ST77XX_BLACK);
-        font.printStr(ALIGN_CENTER, _carrier->display.height()/2, const_cast<char*>(*_value ? "ON" : "OFF"));
+        lcd->setFont(&FreeSans12pt7b);
+        lcd->setTextSize(1);
+        lcd->setTextColor(ST77XX_WHITE);
+        drawStringCenter(*lcd, const_cast<char*>(*_value ? "ON" : "OFF"), lcd->width()/2, _carrier->display.height()/2);
         
         _last_value = *_value;
         

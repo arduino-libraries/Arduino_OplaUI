@@ -1,8 +1,8 @@
 #include "gauges.h"
-#include "rre_bold13x20.h"
-#include "rre_5x8.h"
-#include "rre_12x16.h"
-#include "rre_ubuntu_32.h"
+#include "utils.h"
+#include <Fonts/FreeSansBold12pt7b.h>
+#include <Fonts/FreeSans9pt7b.h>
+#include <Fonts/FreeSans12pt7b.h>
 
 // ------------------------------------------------
 // Pre-computed sin table
@@ -91,7 +91,6 @@ static uint16_t rgbWheel(int idx)
 }
 
 static Adafruit_ST7789 *lcd;
-static void fillRect(int x, int y, int w, int h, int c) { lcd->fillRect(x, y, w, h, c); }
 
 void OplaGauge::begin(Adafruit_ST7789 &d)
 {
@@ -99,7 +98,6 @@ void OplaGauge::begin(Adafruit_ST7789 &d)
   d.setRotation(0);
   w = d.width();
   h = d.height();
-  font.init(fillRect, w, h);
 }
 
 void OplaGauge::clear()
@@ -159,15 +157,16 @@ void OplaGauge1::draw(float level)
   // Print value
   char buf[20];
   snprintf(buf, 10, " %.*g%s ", digits, level, suffix.c_str());
-  font.setFont(&rre_ubuntu_32);
-  font.setCharMinWd(13);
-  font.setColor(ST77XX_WHITE, ST77XX_BLACK);
-  font.printStr(ALIGN_CENTER, h / 2 - 10, buf);
+  lcd->setFont(&FreeSansBold12pt7b);
+  lcd->setTextSize(1);
+  lcd->setTextColor(ST77XX_WHITE);
+  drawStringCenter(*lcd, buf, lcd->width()/2, h / 2 - 10);
 
   // Print title
-  font.setFont(&rre_5x8);
-  font.setColor(ST77XX_WHITE, ST77XX_BLACK);
-  font.printStr(ALIGN_CENTER, h/2-30, const_cast<char*>(title.c_str()));
+  lcd->setFont(&FreeSans9pt7b);
+  lcd->setTextSize(1);
+  lcd->setTextColor(ST77XX_WHITE);
+  drawStringCenter(*lcd, const_cast<char*>(title.c_str()), lcd->width()/2, h/2-30);
 }
 
 void OplaGauge2::draw(float level)
@@ -207,9 +206,10 @@ void OplaGauge2::draw(float level)
     int i = (a - mina) / stepa;  // number of step
     int v = min + (max - min) / steps * i;  // value of step
     snprintf(buf, 4, "%d", v);
-    font.setFont(&rre_12x16);
-    font.setColor(RGBto565(150, 150, 150));
-    font.printStr(i == maxa ? xs0 - 4 : xs0 - 2, ys0 - 2, buf);
+    lcd->setFont(&FreeSansBold12pt7b);
+    lcd->setTextSize(1);
+    lcd->setTextColor(RGBto565(150, 150, 150));
+    drawStringLeft(*lcd, buf, i == maxa ? xs0 - 4 : xs0 - 2, ys0 - 2);
   }
 
   int a = map(level, min, max, mina, maxa);
@@ -250,15 +250,16 @@ void OplaGauge2::draw(float level)
   // Print value
   char buf[20];
   snprintf(buf, 10, " %.*g%s ", digits, level, suffix.c_str());
-  font.setFont(&rre_ubuntu_32);
-  font.setCharMinWd(13);
-  font.setColor(ST77XX_BLACK, ST77XX_WHITE);
-  font.printStr(ALIGN_CENTER, h/2+20, buf);
+  lcd->setFont(&FreeSansBold12pt7b);
+  lcd->setTextSize(1);
+  lcd->setTextColor(ST77XX_BLACK);
+  drawStringCenter(*lcd, buf, lcd->width()/2, h/2+20);
 
   // Print title
-  font.setFont(&rre_5x8);
-  font.setColor(ST77XX_BLACK, ST77XX_WHITE);
-  font.printStr(ALIGN_CENTER, h/2+60, const_cast<char*>(title.c_str()));
+  lcd->setFont(&FreeSans9pt7b);
+  lcd->setTextSize(1);
+  lcd->setTextColor(ST77XX_BLACK);
+  drawStringCenter(*lcd, const_cast<char*>(title.c_str()), lcd->width()/2, h/2+60);
 }
 
 void OplaGauge3::draw(float level)
@@ -311,10 +312,10 @@ void OplaGauge3::draw(float level)
 
   char buf[20];
   snprintf(buf, 10, "%d", level);
-  font.setFont(&rre_Bold13x20);
-  font.setCharMinWd(13);
-  font.setColor(ST77XX_WHITE);
-  font.printStr(ALIGN_RIGHT, h - 20, buf);
+  lcd->setFont(&FreeSansBold12pt7b);
+  lcd->setTextSize(1);
+  lcd->setTextColor(ST77XX_WHITE);
+  drawStringRight(*lcd, buf, lcd->width(), h - 20);
 }
 
 void OplaGauge4::draw(float level)
@@ -362,8 +363,8 @@ void OplaGauge4::draw(float level)
 
   char buf[20];
   snprintf(buf, 10, "%d", level);
-  font.setFont(&rre_Bold13x20);
-  font.setCharMinWd(13);
-  font.setColor(ST77XX_WHITE);
-  font.printStr(ALIGN_RIGHT, h - 20, buf);
+  lcd->setFont(&FreeSansBold12pt7b);
+  lcd->setTextSize(1);
+  lcd->setTextColor(ST77XX_WHITE);
+  drawStringRight(*lcd, buf, lcd->width(), h - 20);
 }

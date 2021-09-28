@@ -2,7 +2,6 @@
 #define _OPLA_GAUGES_H
 
 #include <Adafruit_ST7789.h>
-#include <RREFont.h>
 
 class OplaGauge
 {
@@ -34,7 +33,6 @@ protected:
   int digits = 3;
   int w, h;
   Adafruit_ST7789 *display;
-  RREFont font;
   uint8_t _bgR, _bgG, _bgB = 0;
 };
 
