@@ -32,22 +32,20 @@ class GaugeWidget : public Widget {
     int_value = &val;
   };
   void setTitle(char* v) {
-    _gauge->title = v;
+    _gauge->setTitle(v);
   };
   void setSuffix(char* v) {
-    _gauge->suffix = v;
+    _gauge->setSuffix(v);
   };
-  void setMin(int v) {
-    _gauge->min = v;
+  void setRange(int min, int max) {
+    _gauge->setRange(min, max);
   };
-  void setMax(int v) {
-    _gauge->max = v;
-  };
+
   void setSteps(int v) {
-    _gauge->steps = v;
+    _gauge->setSteps(v);
   };
   void setDigits(int v) {
-    _gauge->digits = v;
+    _gauge->setDigits(v);
   };
   void begin(MKRIoTCarrier &carrier);
   void show();

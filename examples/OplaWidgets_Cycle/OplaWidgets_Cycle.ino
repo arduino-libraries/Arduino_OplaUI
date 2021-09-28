@@ -19,8 +19,7 @@ void setup() {
 
   w1.setTitle("TEMPERATURE");
   w1.setSuffix(" C");
-  w1.setMin(0);
-  w1.setMax(50);
+  w1.setRange(0, 50);
   w1.setSteps(10);
   w1.attachValue(temperature);
   w1.setReadOnly(true);
@@ -28,8 +27,7 @@ void setup() {
   w2.setTitle("PRESSURE");
   w2.setSuffix(" hPa");
   w2.setDigits(4);
-  w2.setMin(700);
-  w2.setMax(1200);
+  w2.setRange(700, 1200);
   w2.setSteps(10);
   w2.attachValue(pressure);
   w2.setReadOnly(true);

@@ -7,11 +7,11 @@ OplaGauge2 gauge2;
 OplaGauge3 gauge3;
 OplaGauge4 gauge4;
 
-void setup(void)
+void setup()
 {
   carrier.begin();
   gauge1.begin(carrier.display);
-  gauge1.suffix = "%";
+  gauge1.setSuffix("%");
 
   gauge2.begin(carrier.display);
   gauge3.begin(carrier.display);
@@ -27,13 +27,13 @@ void loop()
   ms = millis();
   while (millis() - ms < tm)
   {
-    for (int i = gauge1.min; i <= gauge1.max; i += 5)
+    for (int i = gauge1.getMin(); i <= gauge1.getMax(); i += 5)
     {
       gauge1.draw(i);
       delay(10);
     }
     delay(250);
-    for (int i = gauge1.max; i >= gauge1.min; i -= 5)
+    for (int i = gauge1.getMax(); i >= gauge1.getMin(); i -= 5)
     {
       gauge1.draw(i);
       delay(10);
