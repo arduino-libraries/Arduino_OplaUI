@@ -2,6 +2,7 @@
 #include "utils.h"
 #include <Fonts/FreeSans9pt7b.h>
 #include <Fonts/FreeSans12pt7b.h>
+#include <Fonts/FreeSansBold24pt7b.h>
 
 constexpr unsigned long REDRAW_INTERVAL = 100;
 
@@ -56,13 +57,13 @@ void String_Widget::draw(bool clear) {
         lcd->setFont(&FreeSans9pt7b);
         lcd->setTextSize(1);
         lcd->setTextColor(ST77XX_WHITE);
-        drawStringCenter(*lcd, const_cast<char*>(_title.c_str()), lcd->width()/2, _carrier->display.height()/2-30);
+        drawStringCenter(*lcd, const_cast<char*>(_title.c_str()), lcd->width()/2, _carrier->display.height()/2-30, ST77XX_BLACK);
         
         // Print value
         lcd->setFont(&FreeSans12pt7b);
         lcd->setTextSize(1);
         lcd->setTextColor(ST77XX_WHITE);
-        drawStringCenter(*lcd, const_cast<char*>(_value->c_str()), lcd->width()/2, _carrier->display.height()/2);
+        drawStringCenter(*lcd, const_cast<char*>(_value->c_str()), lcd->width()/2, _carrier->display.height()/2+30, ST77XX_BLACK);
         
         _last_value = *_value;
     }
@@ -78,13 +79,13 @@ void Bool_Widget::draw(bool clear) {
         lcd->setFont(&FreeSans9pt7b);
         lcd->setTextSize(1);
         lcd->setTextColor(ST77XX_WHITE);
-        drawStringCenter(*lcd, const_cast<char*>(_title.c_str()), lcd->width()/2, _carrier->display.height()/2-30);
+        drawStringCenter(*lcd, const_cast<char*>(_title.c_str()), lcd->width()/2, _carrier->display.height()/2-30, ST77XX_BLACK);
         
         // Print value
-        lcd->setFont(&FreeSans12pt7b);
+        lcd->setFont(&FreeSansBold24pt7b);
         lcd->setTextSize(1);
-        lcd->setTextColor(ST77XX_WHITE);
-        drawStringCenter(*lcd, const_cast<char*>(*_value ? "ON" : "OFF"), lcd->width()/2, _carrier->display.height()/2);
+        lcd->setTextColor(*_value ? ST77XX_GREEN : ST77XX_RED);
+        drawStringCenter(*lcd, const_cast<char*>(*_value ? "ON" : "OFF"), lcd->width()/2, _carrier->display.height()/2+50, ST77XX_BLACK);
         
         _last_value = *_value;
         

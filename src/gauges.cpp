@@ -155,18 +155,19 @@ void OplaGauge1::draw(float level)
   }
 
   // Print value
-  char buf[20];
-  snprintf(buf, 10, " %.*g%s ", digits, level, suffix.c_str());
   lcd->setFont(&FreeSansBold12pt7b);
   lcd->setTextSize(1);
   lcd->setTextColor(ST77XX_WHITE);
-  drawStringCenter(*lcd, buf, lcd->width()/2, h / 2 - 10);
+  {
+    String buf = String(level, digits) + suffix;
+    drawStringCenter(*lcd, const_cast<char*>(buf.c_str()), lcd->width()/2, h/2+25, ST77XX_BLACK);
+  }
 
   // Print title
   lcd->setFont(&FreeSans9pt7b);
   lcd->setTextSize(1);
   lcd->setTextColor(ST77XX_WHITE);
-  drawStringCenter(*lcd, const_cast<char*>(title.c_str()), lcd->width()/2, h/2-30);
+  drawStringCenter(*lcd, const_cast<char*>(title.c_str()), lcd->width()/2, h/2-6, ST77XX_BLACK);
 }
 
 void OplaGauge2::draw(float level)
@@ -178,7 +179,7 @@ void OplaGauge2::draw(float level)
 
   const int rx0 = w / 2 - 4;
   int rx1 = rx0 - 8;
-  const int rx2 = rx1 - 4;
+  const int rx2 = rx1 - 15;
 
   const int mina = 15;
   const int maxa = 180 - 15;
@@ -202,14 +203,15 @@ void OplaGauge2::draw(float level)
     xs0 = cx + sx * rx2 / MAXSIN;
     ys0 = cy + sy * rx2 / MAXSIN;
 
-    char buf[20];
     int i = (a - mina) / stepa;  // number of step
     int v = min + (max - min) / steps * i;  // value of step
-    snprintf(buf, 4, "%d", v);
-    lcd->setFont(&FreeSansBold12pt7b);
+    lcd->setFont(&FreeSans9pt7b);
     lcd->setTextSize(1);
     lcd->setTextColor(RGBto565(150, 150, 150));
-    drawStringLeft(*lcd, buf, i == maxa ? xs0 - 4 : xs0 - 2, ys0 - 2);
+    {
+      String buf(v);
+      drawStringCenter(*lcd, const_cast<char*>(buf.c_str()), xs0, ys0+4, ST77XX_WHITE);
+    }
   }
 
   int a = map(level, min, max, mina, maxa);
@@ -248,18 +250,19 @@ void OplaGauge2::draw(float level)
   ye1Old = ye1;
 
   // Print value
-  char buf[20];
-  snprintf(buf, 10, " %.*g%s ", digits, level, suffix.c_str());
   lcd->setFont(&FreeSansBold12pt7b);
   lcd->setTextSize(1);
   lcd->setTextColor(ST77XX_BLACK);
-  drawStringCenter(*lcd, buf, lcd->width()/2, h/2+20);
+  {
+    String buf = String(level, digits) + suffix;
+    drawStringCenter(*lcd, const_cast<char*>(buf.c_str()), lcd->width()/2, h/2+38, ST77XX_WHITE);
+  }
 
   // Print title
   lcd->setFont(&FreeSans9pt7b);
   lcd->setTextSize(1);
   lcd->setTextColor(ST77XX_BLACK);
-  drawStringCenter(*lcd, const_cast<char*>(title.c_str()), lcd->width()/2, h/2+60);
+  drawStringCenter(*lcd, const_cast<char*>(title.c_str()), lcd->width()/2, h/2+65, ST77XX_WHITE);
 }
 
 void OplaGauge3::draw(float level)
@@ -310,12 +313,13 @@ void OplaGauge3::draw(float level)
 
   lcd->fillRect(w - 13 * 3 - 2, h - 20, 13 * 3 + 2, 20, ST77XX_BLACK);
 
-  char buf[20];
-  snprintf(buf, 10, "%d", level);
   lcd->setFont(&FreeSansBold12pt7b);
   lcd->setTextSize(1);
   lcd->setTextColor(ST77XX_WHITE);
-  drawStringRight(*lcd, buf, lcd->width(), h - 20);
+  {
+    String buf(level);
+    drawStringRight(*lcd, const_cast<char*>(buf.c_str()), lcd->width(), h - 20);
+  }
 }
 
 void OplaGauge4::draw(float level)
@@ -361,10 +365,11 @@ void OplaGauge4::draw(float level)
   }
   lcd->fillRect(w - (13 * 3 + 2) * 1, h - 20, (13 * 3 + 2) * 1, 20, ST77XX_BLACK);
 
-  char buf[20];
-  snprintf(buf, 10, "%d", level);
   lcd->setFont(&FreeSansBold12pt7b);
   lcd->setTextSize(1);
   lcd->setTextColor(ST77XX_WHITE);
-  drawStringRight(*lcd, buf, lcd->width(), h - 20);
+  {
+    String buf(level);
+    drawStringRight(*lcd, const_cast<char*>(buf.c_str()), lcd->width(), h - 20);
+  }
 }

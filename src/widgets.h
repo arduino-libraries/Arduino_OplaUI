@@ -50,6 +50,7 @@ class GaugeWidget : public Widget {
   };
   void begin(MKRIoTCarrier &carrier);
   void show();
+  void hide();
   void draw(bool clear = true);
   void onButtonDown(short i);
   
@@ -117,6 +118,7 @@ class Bool_Widget : public Widget {
     this->draw(true);
   }
   void draw(bool clear = true);
+  void hide();
   void onButtonDown(short i);
   
   protected:
