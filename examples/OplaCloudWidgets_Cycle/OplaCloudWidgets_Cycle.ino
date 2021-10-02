@@ -29,6 +29,7 @@ void setup() {
   w3.setTitle("LIGHT");
   w3.attachValue(light);
 
+  carrier.begin();
   app.begin(carrier);
   app.addWidget(w0);
   app.addWidget(w1);

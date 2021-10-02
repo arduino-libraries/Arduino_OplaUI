@@ -39,6 +39,7 @@ void setup() {
   w4.setTitle("LIGHT");
   w4.attachValue(light);
 
+  carrier.begin();
   app.begin(carrier);
   app.setWidget(0, w0);
   app.setWidget(1, w1);

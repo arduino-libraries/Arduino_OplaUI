@@ -118,7 +118,6 @@ void Bool_Widget::onButtonDown(short i) {
 
 void WidgetsApp::begin(MKRIoTCarrier &carrier) {
     _carrier = &carrier;
-    _carrier->begin();
 
     // Perform a nice LED animation to signal the app is running
     for (short i = 0; i <= 4; i++) {

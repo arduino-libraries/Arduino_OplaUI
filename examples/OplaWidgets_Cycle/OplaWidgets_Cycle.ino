@@ -49,6 +49,7 @@ void setup() {
   w5.setSteps(22);
   w5.attachValue(counter);
   
+  carrier.begin();
   app.begin(carrier);
   app.addWidget(w0);
   app.addWidget(w1);
