@@ -4,6 +4,8 @@
 #include <Arduino_MKRIoTCarrier.h>
 #include "gauges.h"
 
+typedef void(*ChangeCallbackFunc)(void);
+
 class Widget {
   public:
   virtual void begin(MKRIoTCarrier &carrier) {
@@ -15,6 +17,9 @@ class Widget {
   virtual void hide() {};
   virtual void draw(bool clear = true) = 0;
   virtual void onButtonDown(short i) {};
+  void onValueChange(ChangeCallbackFunc fn) {
+    _on_value_change = fn;
+  };
   void setReadOnly(bool v) {
     _readonly = v;
   };
@@ -22,6 +27,7 @@ class Widget {
   protected:
   MKRIoTCarrier* _carrier = nullptr;
   bool _readonly = false;
+  ChangeCallbackFunc _on_value_change = nullptr;
 };
 
 class GaugeWidget : public Widget {
@@ -31,6 +37,9 @@ class GaugeWidget : public Widget {
   };
   void attachValue(int &val) {
     int_value = &val;
+  };
+  void attachValue(CloudFloat &val) {
+    cloudfloat_value = &val;
   };
   void setTitle(char* v) {
     _gauge->setTitle(v);
@@ -58,11 +67,14 @@ class GaugeWidget : public Widget {
   OplaGauge* _gauge = nullptr;
   float* float_value = nullptr;
   int* int_value = nullptr;
+  CloudFloat* cloudfloat_value = nullptr;
   float getFloatValue() {
     if (float_value != nullptr) {
       return *float_value;
     } else if (int_value != nullptr) {
       return (float)*int_value;
+    } else if (cloudfloat_value != nullptr) {
+      return (float)*cloudfloat_value;
     } else {
       return 0;
     }
@@ -72,7 +84,10 @@ class GaugeWidget : public Widget {
       *float_value += v;
     } else if (int_value != nullptr) {
       *int_value += v;
+    } else if (cloudfloat_value != nullptr) {
+      *cloudfloat_value += v;
     }
+    if (_on_value_change != nullptr) _on_value_change();
   };
 };
 

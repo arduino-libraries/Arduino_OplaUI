@@ -113,6 +113,7 @@ void Bool_Widget::onButtonDown(short i) {
     if (i == 3) {
         beep(*_carrier);
         *_value = !*_value;
+        if (_on_value_change != nullptr) _on_value_change();
     }
 }
 
