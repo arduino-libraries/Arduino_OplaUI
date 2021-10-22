@@ -11,7 +11,7 @@
 
 ### `begin()`
 
-Initializes the guage.
+Initializes the gauge.
 
 #### Syntax
 
@@ -373,7 +373,7 @@ void setup() {
 
 ### `draw()`
 
-Redraws the gauge. Use this method in your `loop()` function or whenever you need to update the guage when you change its configuration or value.
+Redraws the gauge. Use this method in your `loop()` function or whenever you need to update the gauge when you change its configuration or value.
 
 #### Syntax
 

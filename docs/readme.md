@@ -13,7 +13,7 @@ This library works seamlessly with Arduino Cloud, so you can use it also to visu
 There are two ways you can access your widgets:
 
 * The **DirectWidgetsApp** class assigns each widget to a button: in this case you're limited to 5 widgets and you can't use the buttons for interaction
-* The **CycleWidgetsApp** class lets you cycle through the widgets using a single button: in this case you can have as many widgets as the board memory allows and you can use the remaning four buttons for interaction
+* The **CycleWidgetsApp** class lets you cycle through the widgets using a single button: in this case you can have as many widgets as the board memory allows and you can use the remaining four buttons for interaction
 
 See the examples to learn the syntax.
 
