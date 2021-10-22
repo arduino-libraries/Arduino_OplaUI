@@ -2,6 +2,7 @@
 #define _OPLA_WIDGETS_H
 
 #include <Arduino_MKRIoTCarrier.h>
+#include <ArduinoIoTCloud.h>
 #include "gauges.h"
 
 typedef void(*ChangeCallbackFunc)(void);
