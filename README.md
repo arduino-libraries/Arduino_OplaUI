@@ -5,8 +5,6 @@
 [![Check Arduino status](https://github.com/arduino-libraries/Arduino_OplaUI/actions/workflows/check-arduino.yml/badge.svg)](https://github.com/arduino-libraries/Arduino_OplaUI/actions/workflows/check-arduino.yml)
 [![Compile Examples](https://github.com/arduino-libraries/Arduino_OplaUI/workflows/Compile%20Examples/badge.svg)](https://github.com/arduino-libraries/Arduino_OplaUI/actions?workflow=Compile+Examples)
 [![Spell Check](https://github.com/arduino-libraries/Arduino_OplaUI/workflows/Spell%20Check/badge.svg)](https://github.com/arduino-libraries/Arduino_OplaUI/actions?workflow=Spell+Check)
-[![Unit Tests](https://github.com/arduino-libraries/Arduino_OplaUI/workflows/Unit%20Tests/badge.svg)](https://github.com/arduino-libraries/Arduino_OplaUI/actions?workflow=Unit+Tests)
-[![codecov](https://codecov.io/gh/arduino-libraries/Arduino_OplaUI/branch/master/graph/badge.svg)](https://codecov.io/gh/arduino-libraries/Arduino_OplaUI)
 [![License](https://img.shields.io/github/license/arduino-libraries/Arduino_OplaUI)](https://support.arduino.cc/hc/en-us/articles/360018434279-I-have-used-Arduino-for-my-project-do-I-need-to-release-my-source-code-)
 
 This Arduino library provides user interface helpers and widgets for the [Arduino Oplà IoT](https://store.arduino.cc/opla-iot-kit) Kit and the [MKR IoT Carrier](http://store.arduino.cc/mkr-iot-carrier).
