@@ -45,7 +45,13 @@ class GaugeWidget : public Widget {
   void setTitle(char* v) {
     _gauge->setTitle(v);
   };
+  void setTitle(const char* v) {
+    _gauge->setTitle(v);
+  };
   void setSuffix(char* v) {
+    _gauge->setSuffix(v);
+  };
+  void setSuffix(const char* v) {
     _gauge->setSuffix(v);
   };
   void setRange(int min, int max) {
