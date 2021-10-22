@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "*.scss": "scss",
-        "system_error": "cpp"
-    }
-}
