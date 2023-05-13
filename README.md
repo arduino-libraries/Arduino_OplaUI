@@ -17,7 +17,7 @@ Features:
 * widget framework that makes it easy to combine multiple independent widgets in a single application (gauge, string, bool)
 * use touch buttons to increase/decrease values
 
-> See the [library home page](https://www.arduino.cc/reference/en/libraries/servo/) and the [examples](examples/) for more information about this library and its usage.
+> See the [library home page](https://www.arduino.cc/reference/en/libraries/arduino_oplaui/) and the [examples](examples/) for more information about this library and its usage.
 
 ## 🔎 Resources
 
